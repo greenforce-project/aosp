@@ -1741,8 +1741,12 @@ EXPORT_SYMBOL_GPL(part_round_stats);
 #ifdef CONFIG_PM
 static void blk_pm_put_request(struct request *rq)
 {
-	if (rq->q->dev && !(rq->rq_flags & RQF_PM) && !--rq->q->nr_pending)
-		pm_runtime_mark_last_busy(rq->q->dev);
+	if (rq->q->dev && !(rq->rq_flags & RQF_PM) &&
+	    (rq->rq_flags & RQF_PM_ADDED)) {
+		rq->rq_flags &= ~RQF_PM_ADDED;
+		if (!--rq->q->nr_pending)
+			pm_runtime_mark_last_busy(rq->q->dev);
+	}
 }
 #else
 static inline void blk_pm_put_request(struct request *rq) {}
@@ -2180,10 +2184,7 @@ static inline bool bio_check_ro(struct bio *bio, struct hd_struct *part)
 
 		if (op_is_flush(bio->bi_opf) && !bio_sectors(bio))
 			return false;
-
-		WARN_ONCE(1,
-		       "generic_make_request: Trying to write "
-			"to read-only block-device %s (partno %d)\n",
+		pr_warn("Trying to write to read-only block-device %s (partno %d)\n",
 			bio_devname(bio, b), part->partno);
 		/* Older lvm-tools actually trigger this */
 		return false;

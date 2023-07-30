@@ -3907,6 +3907,7 @@ F:	crypto/
 F:	drivers/crypto/
 F:	include/crypto/
 F:	include/linux/crypto*
+F:	lib/crypto/
 
 CRYPTOGRAPHIC RANDOM NUMBER GENERATOR
 M:	Neil Horman <nhorman@tuxdriver.com>
@@ -4157,13 +4158,6 @@ F:	include/linux/dccp.h
 F:	include/uapi/linux/dccp.h
 F:	include/linux/tfrc.h
 F:	net/dccp/
-
-DECnet NETWORK LAYER
-W:	http://linux-decnet.sourceforge.net
-L:	linux-decnet-user@lists.sourceforge.net
-S:	Orphan
-F:	Documentation/networking/decnet.txt
-F:	net/decnet/
 
 DECSTATION PLATFORM SUPPORT
 M:	"Maciej W. Rozycki" <macro@linux-mips.org>
@@ -6610,6 +6604,12 @@ F:	drivers/hid/
 F:	include/linux/hid*
 F:	include/uapi/linux/hid*
 
+HID PLAYSTATION DRIVER
+M:	Roderick Colenbrander <roderick.colenbrander@sony.com>
+L:	linux-input@vger.kernel.org
+S:	Supported
+F:	drivers/hid/hid-playstation.c
+
 HID SENSOR HUB DRIVERS
 M:	Jiri Kosina <jikos@kernel.org>
 M:	Jonathan Cameron <jic23@kernel.org>
@@ -7404,7 +7404,7 @@ F:	Documentation/networking/ixgb.txt
 F:	Documentation/networking/ixgbe.txt
 F:	Documentation/networking/ixgbevf.txt
 F:	Documentation/networking/i40e.txt
-F:	Documentation/networking/i40evf.txt
+F:	Documentation/networking/iavf.txt
 F:	Documentation/networking/ice.txt
 F:	drivers/net/ethernet/intel/
 F:	drivers/net/ethernet/intel/*/
@@ -12272,6 +12272,7 @@ F:	arch/mips/configs/generic/board-ranchu.config
 
 RANDOM NUMBER DRIVER
 M:	"Theodore Ts'o" <tytso@mit.edu>
+M:	Jason A. Donenfeld <Jason@zx2c4.com>
 S:	Maintained
 F:	drivers/char/random.c
 
@@ -15889,6 +15890,14 @@ M:	William Breathitt Gray <vilhelm.gray@gmail.com>
 L:	linux-gpio@vger.kernel.org
 S:	Maintained
 F:	drivers/gpio/gpio-ws16c48.c
+
+WIREGUARD SECURE NETWORK TUNNEL
+M:	Jason A. Donenfeld <Jason@zx2c4.com>
+S:	Maintained
+F:	drivers/net/wireguard/
+F:	tools/testing/selftests/wireguard/
+L:	wireguard@lists.zx2c4.com
+L:	netdev@vger.kernel.org
 
 WISTRON LAPTOP BUTTON DRIVER
 M:	Miloslav Trmac <mitr@volny.cz>
